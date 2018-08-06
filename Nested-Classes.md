@@ -2,10 +2,10 @@
 	
 	class OuterClass
 	{
-	...
-	class NestedClass
-	{
 		...
-	}
+		class NestedClass
+		{
+			...
+		}
 	}
 	
