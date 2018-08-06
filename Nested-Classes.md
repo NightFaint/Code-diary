@@ -97,6 +97,8 @@ public，protected。
   
   优先级：方法methodInFirstLevel中的参数x > 内部类FirstLevel中的实例域x > 外部类ShowdowTest的实例域x。
   
-参考：https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
+参考：
 
-     《java核心技术 卷1》
+  https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
+  
+  《java核心技术 卷1》
