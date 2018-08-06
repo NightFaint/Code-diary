@@ -119,23 +119,24 @@
     }
 
 
-## 注意，[之前说过](Nested-Classes.md)，内部类里不能有静态方法。
+### 注意，[之前说过](Nested-Classes.md)，内部类里不能有静态方法。
 
-  class Outer {
-     void outerMethod() {
-        System.out.println("inside outerMethod");
-     }
-     class Inner {
-        public static void main(String[] args){
-           System.out.println("inside inner class Method");
-        }
-     }
-  }
-  
-  输出：
-  Error illegal static declaration in inner class 
-  Outer.Inner public static void main(String[] args) 
-  modifier ‘static’ is only allowed in constant 
-  variable declaration 
+    class Outer {
+       void outerMethod() {
+          System.out.println("inside outerMethod");
+       }
+       class Inner {
+          public static void main(String[] args){
+             System.out.println("inside inner class Method");
+          }
+       }
+    }
+
+    输出：
+    Error illegal static declaration in inner class 
+    Outer.Inner public static void main(String[] args) 
+    modifier ‘static’ is only allowed in constant 
+    variable declaration 
+### 另外，内部类中声明的所有静态域都必须是final的。即内部类不能有静态变量但可以有静态常量。
     
   
