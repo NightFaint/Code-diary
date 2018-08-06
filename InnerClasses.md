@@ -36,7 +36,15 @@
         outer = clock;
     }
   
-  注意，outer不是Java关键字，这里仅作说明之用。
+  注意，outer不是Java关键字，这里仅作说明之用。实际上，外围类引用表达式为OuterClass.this。actionPerformed方法中if(beep)可以写成
+  
+    if(TalkingClock.this.beep)...
+  
+  反过来，编写内部对象的构造器可写为：outerObject.new InnerClass(Construction parameters)。例如：
+  
+    ActionListener listener = this.new TimePrinter();
+    
+  通常this是多余的，一般省略。
   
   当在start方法中创建TimePrinter对象，编译器就会将this引用传递给当前的TimePrinter构造器。
   
@@ -110,5 +118,24 @@
         }
     }
 
+
+## 注意，[之前说过](Nested-Classes.md)，内部类里不能有静态方法。
+
+  class Outer {
+     void outerMethod() {
+        System.out.println("inside outerMethod");
+     }
+     class Inner {
+        public static void main(String[] args){
+           System.out.println("inside inner class Method");
+        }
+     }
+  }
+  
+  输出：
+  Error illegal static declaration in inner class 
+  Outer.Inner public static void main(String[] args) 
+  modifier ‘static’ is only allowed in constant 
+  variable declaration 
     
   
