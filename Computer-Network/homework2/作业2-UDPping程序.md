@@ -38,7 +38,7 @@
 ### 服务器端
   在一台主机上运行UDPPingerServer.py。
 
-  ![homework2_1.png](../img/homework2_1.png)
+  ![homework2_1.png](../img/homwwork2_1.png)
 
 ###客户端
 
