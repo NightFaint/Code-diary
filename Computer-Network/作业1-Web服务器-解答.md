@@ -38,17 +38,17 @@
     	print('Ready to serve...')
     	connectionSocket,addr=serversocket.accept()#接到客户端请求后，建立一个连接套接字，该套接字负责与对应的客户端通信-->并发
     	try:
-			message=connectionSocket.recv(1024)
+	        message=connectionSocket.recv(1024)
 			filename=message.split()[1]#回想一下请求行：方法字段、URL字段、HTTP版本，这个获取的便是URL字段，以便得到要请求的文件名
-        	f=open(filename[1:])#去掉第一个字符'/'
+			f=open(filename[1:])#去掉第一个字符'/'
 			outputdata=f.read()
-        	header = 'HTTP/1.1 200 OK\nConnection: close\nContent-Type: text/html\nContent-Length: %d\n\n' % (len(outputdata))
-        	connectionSocket.send(header.encode())
-        	for i in range(len(outputdata)):
-            	connectionSocket.send(outputdata[i].encode())
-        	connectionSocket.close()
-    	except IOError:
-			connectionSocket.send("HTTP/1.1 404 NOTFound".encode())
+			header = ' HTTP/1.1 200 OK'
+			connectionSocket.send(header.encode())
+			for i in range(len(outputdata)):
+				connectionSocket.send(outputdata[i].encode())
+			connectionSocket.close()
+		except IOError:
+			connectionSocket.send("HTTP/1.1 404 Found".encode())
 			connectionSocket.close()
 	serversocket.close()
 
