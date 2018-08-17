@@ -28,9 +28,9 @@
 	serversocket.bind(('',6789))#将这个套接字与套接字地址(IP+端口号)绑定
 	serversocket.listen(1)#最大连接数为1，表示最多同时只能响应一个客户端请求
 	while True:
-    		print('Ready to serve...')
-    		connectionSocket,addr=serversocket.accept()#接到客户端请求后，建立一个连接套接字，该套接字负责与对应的客户端通信-->并发
-    		try:
+    	print('Ready to serve...')
+    	connectionSocket,addr=serversocket.accept()#接到客户端请求后，建立一个连接套接字，该套接字负责与对应的客户端通信-->并发
+    	try:
         	message=connectionSocket.recv(1024)
         	filename=message.split()[1]#回想一下请求行：方法字段、URL字段、HTTP版本，这个获取的便是URL字段，以便得到要请求的文件名
         	f=open(filename[1:])#去掉第一个字符'/'
@@ -55,7 +55,7 @@
 
   在同一个主机同一个目录下放置HelloWorld.html和webserver.py文件，运行webserver.py文件，作为服务器。
   
-  [!homework1.png](homework1.png)
+  ![homework1.png](homework1.png)
   
 ### 客户端
 
@@ -64,8 +64,8 @@
 
   由于我只有一台主机，便在和服务器同一台主机打开页面，输入http://127.0.0.1:6789/HelloWorld.html。成功的话，结果如下：
   
-  [!homework1_2.png](homework1_2.png)
+  ![homework1_2.png](homework1_2.png)
   
   输入新地址"http://XXX.XXX.XXX.XXX:6789/wozuishuai.html"，由于服务器不存在'shuai.html'。将出现以下页面（注意页面中的"HTTP ERROR 404"）：
 
-  [!homework1_3.png](homework1_3.png)
+  ![homework1_3.png](homework1_3.png)
