@@ -55,7 +55,7 @@
 
   在同一个主机同一个目录下放置HelloWorld.html和webserver.py文件，运行webserver.py文件，作为服务器。
   
-  ![homework1.png](homework1.png)
+  ![homework1.png](img/homework1.png)
   
 ### 客户端
 
@@ -64,8 +64,8 @@
 
   由于我只有一台主机，便在和服务器同一台主机打开页面，输入http://127.0.0.1:6789/HelloWorld.html。成功的话，结果如下：
   
-  ![homework1_2.png](homework1_2.png)
+  ![homework1_2.png](img/homework1_2.png)
   
   输入新地址"http://XXX.XXX.XXX.XXX:6789/wozuishuai.html"，由于服务器不存在'shuai.html'。将出现以下页面（注意页面中的"HTTP ERROR 404"）：
 
-  ![homework1_3.png](homework1_3.png)
+  ![homework1_3.png](img/homework1_3.png)
