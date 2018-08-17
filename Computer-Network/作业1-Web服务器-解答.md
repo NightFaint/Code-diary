@@ -2,12 +2,19 @@
 ## 作业描述
 
 > 在这个编程作业中，你将用Python语言开发一个简单的Web服务器，它仅能处理一个请求。具体而言，你的Web服务器将：
+
 >当一个客户（浏览器）联系时创建一个连接套接字；
+
 >从这个连接套接字接收HTTP请求；
+
 >解释该请求以确定所请求的特定文件；
+
 >从服务器的文件系统获得请求的文件；
+
 >创建一个由请求的文件组成的HTTP响应报文，报文前面有首部行；
+
 >经TCP连接向请求浏览器发送响应。如果浏览器请求一个在该服务器种不存在的文件，服务器应当返回一个“404 Not Found”差错报文。
+
 >在配套网站中，我们提供了用于该服务器的框架代码，我们提供了用于该服务器的框架代码。你的任务是完善该代码，运行服务器，通过在不同主机上运行的浏览器发送请求来测试该服务器。如果运行你服务器的主机上已经有一个Web服务器在运行，你应当为该服务器使用一个不同于80端口的其他端口。
 
 ## 详细描述
@@ -41,8 +48,8 @@
             	connectionSocket.send(outputdata[i].encode())
         	connectionSocket.close()
     	except IOError:
-        	connectionSocket.send("HTTP/1.1 404 NOTFound".encode())
-        	connectionSocket.close()
+			connectionSocket.send("HTTP/1.1 404 NOTFound".encode())
+			connectionSocket.close()
 	serversocket.close()
 
 **HelloWorld.html**
