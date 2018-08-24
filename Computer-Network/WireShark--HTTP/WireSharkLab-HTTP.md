@@ -97,7 +97,7 @@
 ** 问题解答 **
   您的浏览器发送多少HTTP GET请求消息？哪个数据包包含了美国权利法案的消息？
   
-  ![Lab2_5.png](../img/Lab2_5.png)
+  ![Lab2_6.png](../img/Lab2_6.png)
   
   哪个数据包包含响应HTTP GET请求的状态码和短语？
   
@@ -109,3 +109,45 @@
   
   需要多少包含数据的TCP段来执行单个HTTP响应和权利法案文本？
   
+  ## 具有嵌入对象的HTML文档
+  
+1. 启动您的浏览器。
+2. 启动Wireshark数据包嗅探器。
+3. 在浏览器中输入以下URL http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html 浏览器应显示包含两个图像的短HTML文件。这两个图像在基本HTML文件中被引用。也就是说，图像本身不包含在HTML文件中；相反，图像的URL包含在已下载的HTML文件中。如书中所述，您的浏览器将不得不从指定的网站中检索这些图标。出版社的图标是从 www.aw-bc.com 网站检索的。第5版的封面图像存储在manic.cs.umass.edu服务器。
+4. 停止Wireshark数据包捕获，并在display-filter-specification窗口中输入“http”，以便只显示捕获的HTTP消息。
+
+** 问题解答 **
+
+您的浏览器发送了几个HTTP GET请求消息？ 这些GET请求发送到哪个IP地址？
+
+答：  ![Lab2_7.png](../img/Lab2_7.png)
+
+浏览器从两个网站串行还是并行下载了两张图片？请说明。
+
+答：串行。
+  ![Lab2_8.png](../img/Lab2_8.png)
+
+## HTTP认证
+
+1. 请确保浏览器的缓存被清除，如上所述，然后关闭你的浏览器，再然后启动浏览器
+2. 启动Wireshark数据包嗅探器。
+3. 在浏览器中输入以下URL http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wiresharkfile5.html 在弹出框中键入所请求的用户名和密码。
+4. 停止Wireshark数据包捕获，并在display-filter-specification窗口中输入“http”，以便只显示捕获的HTTP消息。
+
+** 问题解答 **
+
+  对于您的浏览器的初始HTTP GET消息，服务器响应（状态码和短语）是什么响应？
+
+答：401 Unauthorized.
+
+  当您的浏览器第二次发送HTTP GET消息时，HTTP GET消息中包含哪些新字段？
+
+答：  ![Lab2_9.png](../img/Lab2_9.png)
+
+使用python中的
+
+    base64.b64decode('d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms')
+    
+就可以得出当前的用户名和密码，也就是说任何一台装有Wireshark的机器都可以得到用户发给服务器的密码（在使用Basic Access Authentication的方法时）。
+
+输入的用户名（wireshark-students）和密码（network）按照客户端HTTP GET消息中请求头的“Authorization: Basic ”的字符串（d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms=）编码。虽然您的用户名和密码可能加密，但它们只是以一种称为Base64格式的格式进行编码。用户名和密码并没有加密！要确认这些，请访问 http://www.motobit.com/util/base64-decoder-encoder.asp 并输入base64编码的字符串d2lyZXNoYXJrLXN0dWRlbnRz 并进行解码。瞧！您已从Base64编码转换为ASCII编码，因此应该看到您的用户名！要查看密码，请输入字符串Om5ldHdvcms=的剩余部分，然后按解码。因为任何人都可以下载像Wireshark这样的工具，而且可以通过网络适配器嗅探数据包（不仅仅是自己的），任何人都可以从Base64转换为ASCII（你刚刚就这么做了！），所以你应该很清楚，WWW网站上的简单密码并不安全，除非采取其他措施。
