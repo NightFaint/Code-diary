@@ -79,7 +79,82 @@ ipconfig可用于显示您当前的TCP/IP信息，包括您的地址，DNS服务
 
   清除了所有条目并从hosts文件重新加载条目。
   
-     ![Lab3_9.png](../img/Lab3_9.png)
+   ![Lab3_9.png](../img/Lab3_9.png)
      
 ## 3. 使用Wireshark追踪DNS
 
+1. 使用ipconfig清空主机中的DNS缓存。
+2. 打开浏览器并清空浏览器缓存。 （若使用Internet Explorer，转到工具菜单并选择Internet选项；然后在常规选项卡中选择删除文件。）
+3. 打开Wireshark，然后在过滤器中输入“ip.addr==your_IP_address”，您可以先使用ipconfig获取你的IP地址。此过滤器将删除既从你主机不发出也不发往你主机的所有数据包。
+4. 在Wireshark中启动数据包捕获。
+5. 使用浏览器访问网页： http://www.ietf.org
+6. 停止数据包捕获。
+
+  结果如下
+  
+  ![Lab3_10.png](../img/Lab3_10.png)
+  
+ ### 问题解答
+ 
+ 找到DNS查询和响应消息。它们是否通过UDP或TCP发送？
+ 
+ 答：DNS服务都是通过UDP发送（要求快速，tcp需三次握手太慢）。
+ 
+ DNS查询消息的目标端口是什么？ DNS响应消息的源端口是什么？
+ 
+ 答：53；53.
+ ![Lab3_11.png](../img/Lab3_11.png)
+ 
+ ![Lab3_12.png](../img/Lab3_12.png)
+ 
+ DNS查询消息发送到哪个IP地址？使用ipconfig来确定本地DNS服务器的IP地址。这两个IP地址是否相同？
+ 
+ 答：如上图所示，发送到192.168.31.1。该地址是本地dns服务器的ip地址，也是本主机的默认网关。
+ 
+ 检查DNS查询消息。DNS查询是什么类型的？查询消息是否包含任何"answers"？
+ 
+ 答：标准查询，即为A类型。查询消息不包含任何answsers。
+ ![Lab3_13.png](../img/Lab3_13.png)
+ 
+ 检查DNS响应消息。提供了多少个"answers"？这些答案具体包含什么？
+ 
+ 答：三个答案。
+ ![Lab3_14.png](../img/Lab3_14.png)
+ 
+ 考虑从您主机发送的后续TCP SYN数据包。 SYN数据包的目的IP地址是否与DNS响应消息中提供的任何IP地址相对应？
+ 
+ 答：相对应。
+ ![Lab3_15.png](../img/Lab3_15.png)
+ 
+  这个网页包含一些图片。在获取每个图片前，您的主机是否都发出了新的DNS查询？
+  
+  答：没有。
+  
+  ### 现在来看看nslookup
+  
+1. 启动数据包捕获。
+2. 使用nslookup查询 www.mit.edu
+3. 停止数据包捕获。
+
+结果如下：
+
+ ![Lab3_16.png](../img/Lab3_16.png)
+ 
+### 问题解答
+
+DNS查询消息的目标端口是什么？ DNS响应消息的源端口是什么？
+
+答：53
+
+DNS查询消息的目标IP地址是什么？这是你的默认本地DNS服务器的IP地址吗？
+
+答：192.168.31.1，是。
+
+检查DNS查询消息。DNS查询是什么"Type"的？查询消息是否包含任何"answers"？
+
+答：标准查询，即A类型。不包含。
+
+检查DNS响应消息。提供了多少个"answers"？这些答案包含什么？
+
+答：3个。
+ ![Lab3_17.png](../img/Lab3_17.png)
