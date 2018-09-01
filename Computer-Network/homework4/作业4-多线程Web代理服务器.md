@@ -4,10 +4,10 @@
 [Socket4_ProxyServer.pdf](Socket4_ProxyServer.pdf)
 
 ## 代码
-#coding:utf-8
-from socket import *
+    #coding:utf-8
+    from socket import *
 
-# Create a server socket, bind it to a port and start listening
+    # Create a server socket, bind it to a port and start listening
 
     tcpSerSock = socket(AF_INET, SOCK_STREAM)
     tcpSerPort=6666
