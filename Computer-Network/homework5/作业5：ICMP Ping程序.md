@@ -164,5 +164,5 @@
     ping("www.baidu.com")
     
   ## 运行结果
-  ![homework5_1.png](../img/homework5_1.png)
+  ![homework5_1.png](../img/homework5_1.jpg)
 
