@@ -22,3 +22,5 @@
 4. [WireShark-TCP](Computer-Network/WireShark--TCP/WireSharkLab-TCP.md)
 5. [WireShark-UDP](Computer-Network/WireShark--UDP/WireSharkLab-UDP.md)
 6. [WireShark-IP](Computer-Network/WireShark--IP/WireSharkLab-IP.md)
+7. [WireShark-ICMP](Computer-Network/WireShark--ICMP/WireSharkLab-ICMP.md)
+8. [WireSharkLab-DHCP](Computer-Network/WireSharkLab--DHCP/WireSharkLab-DHCP.md)
